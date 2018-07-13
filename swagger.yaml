@@ -1,0 +1,40 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: myapi
+  description: |
+    Swaggerの書き方は以下のURLを参考にする。
+    https://tech.starttoday-tech.com/entry/swagger_yaml
+host: test01:3000
+basePath: /
+paths:
+  /items:
+    get:
+      description: |
+        商品データを取得する。
+        クエリパラメーターでplu_cdが指定された場合、特定の商品情報のみを返す。
+        指定されない場合、すべての商品情報を返す。
+      parameters:
+        - name: plu_cd
+          in: query
+          description: 商品コード
+          required: false
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Successful responses
+          schema:
+            title: ArrayOfItems
+            type: array
+            items:
+              title: items
+              type: object
+              properties:
+                plu_cd:
+                  type: integer
+                  format: int64
+                name:
+                  type: string
+                price:
+                  type: number
